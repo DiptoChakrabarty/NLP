@@ -7,6 +7,8 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 ps=PorterStemmer()
 corpus=[]
@@ -18,6 +20,18 @@ for i in range(len(msg)):
     review= " ".join(review)
     corpus.append(review)
 #print(corpus)
+
+def visualize(labels):
+    words= ' '
+    for text  in  msg[msg['label'] == labels]['text']:
+        words += text + ' '
+    wordcloud = WordCloud(width=600, height=400).generate(words)
+    plt.imshow(wordcloud)
+    plt.axis('off')
+    plt.show()
+
+visualize('spam')
+visualize('ham') 
 
 # Bag of Words
 from sklearn.feature_extraction.text import CountVectorizer

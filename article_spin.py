@@ -59,7 +59,10 @@ def test_spinner():
         if ky in tri_pro:
             w=random_sample(tri_pro[ky]) # select random word from bunch
             token[i+1]=w
+            #print(token)
+    print(token)
+    token = [k for k in token if k!= None]
     print("Spun:")
     print(" ".join(token).replace(" .", ".").replace(" '", "'").replace(" ,", ",").replace("$ ", "$").replace(" !", "!"))
         
-
+test_spinner()

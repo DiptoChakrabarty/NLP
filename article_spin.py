@@ -19,4 +19,31 @@ for review in positive_reviews:
         if ky not in tri:
             tri[ky]=[]
         tri[ky].append(token[i+1])
-print(tri)
+#print(tri)
+# Set Probabilities 
+tri_pro={}
+for k,words in tri.items():
+    
+    if len(set(words)) > 1:   #Consider Cases when multiple occurences of each pair 
+        #print(words,"**")
+        d={}    # make new dictionary to hold words
+        n=0
+        for w in words:
+            if w not in d:
+                d[w]= 0
+            d[w]+=1
+            n+=1
+        #print(d)
+        for w,c in d.items():
+            d[w]= float(c)/n
+        tri_pro[k]=d
+#print(tri_pro)
+
+# define  a random sample of the words
+def random_sample(d):
+    r=random.random()
+    cumulative=0
+    for w,p in d.items():
+        cumulative = p
+        if r < cumulative:
+            return w

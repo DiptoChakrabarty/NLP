@@ -47,3 +47,19 @@ def random_sample(d):
         cumulative = p
         if r < cumulative:
             return w
+
+
+def test_spinner():
+    review = random.choice(positive_reviews)
+    token= review.text.lower()
+    print("Original :",token)
+    token= nltk.tokenize.word_tokenize(token)
+    for i in range(len(token)-2):
+        ky=(token[i],token[i+2])
+        if ky in tri_pro:
+            w=random_sample(tri_pro[ky]) # select random word from bunch
+            token[i+1]=w
+    print("Spun:")
+    print(" ".join(token).replace(" .", ".").replace(" '", "'").replace(" ,", ",").replace("$ ", "$").replace(" !", "!"))
+        
+
